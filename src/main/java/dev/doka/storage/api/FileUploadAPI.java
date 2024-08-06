@@ -33,7 +33,6 @@ import java.util.TreeMap;
 public class FileUploadAPI {
 
     // Naver Object Storage에 파일 업로드용
-
     // 생성한 버킷 이름
     public final static String bucketName = "whiskey-file";
 

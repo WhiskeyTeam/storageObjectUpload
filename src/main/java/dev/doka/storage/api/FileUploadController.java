@@ -20,6 +20,9 @@ public class FileUploadController {
     @PostMapping("/upload")
     public String uploadFile(@RequestParam("file") MultipartFile file){
 
+        System.out.println("Request received: " + file.getOriginalFilename());
+        // print absolutepath
+
         String bucketName = "whiskey-file";
         // 원본 파일 이름을 객체 이름으로 사용
         String objectName = file.getOriginalFilename();
@@ -29,8 +32,11 @@ public class FileUploadController {
             File tempFile = File.createTempFile("upload-", file.getOriginalFilename());
             file.transferTo(tempFile);
 
+            // sout - File.absolutePath
+            System.out.println("ABSOLUTEPATH!!!!!!!!!!" + tempFile.getAbsolutePath());
+
             // 파일 업로드
-            fileUploadAPI.putObject(bucketName, objectName, tempFile.getName());
+            fileUploadAPI.putObject(bucketName, objectName, tempFile.getAbsolutePath());
 
             // 임시 파일 삭제
             tempFile.delete();
