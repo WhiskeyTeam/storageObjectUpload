@@ -10,6 +10,7 @@ import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.entity.FileEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.springframework.context.annotation.Configuration;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -28,6 +29,7 @@ import java.util.TreeMap;
 @Setter
 @Getter
 @RequiredArgsConstructor
+@Configuration
 public class FileUploadAPI {
 
     // Naver Object Storage에 파일 업로드용
@@ -54,9 +56,9 @@ public class FileUploadAPI {
     private static final String ENDPOINT = "https://kr.object.ncloudstorage.com";
 
     // API KEY ID
-    private static final String ACCESS_KEY = "";
+    private static final String ACCESS_KEY = "ncp_iam_BPASKR2nrRmtPZJMFIBv";
     // API SECRET KEY
-    private static final String SECRET_KEY = "";
+    private static final String SECRET_KEY = "ncp_iam_BPKSKR1fMhzw7tICTSptWcJuYymPCgZ3W9";
 
 
     private static byte[] sign(String stringData, byte[] key) throws NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeyException {
@@ -235,6 +237,9 @@ public class FileUploadAPI {
         authorization(request, REGION_NAME, ACCESS_KEY, SECRET_KEY);
 
         httpClient.execute(request);
+
+
+
     }
 
 }

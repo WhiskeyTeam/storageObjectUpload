@@ -39,10 +39,6 @@ dependencies {
     implementation 'commons-codec:commons-codec:1.15'
     // Joda-Time for handling date and time (Optional, Java 8+ users can use java.time)
     implementation 'joda-time:joda-time:2.12.2'
-    // Logging (Optional, useful for debugging)
-
-    // SLF4J와 Logback 의존성
-    implementation 'org.springframework.boot:spring-boot-starter-logging'
 }
 
 tasks.named('test') {
