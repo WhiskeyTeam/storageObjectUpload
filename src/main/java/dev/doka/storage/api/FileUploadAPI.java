@@ -1,8 +1,10 @@
 package dev.doka.storage.api;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.http.Header;
-import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpUriRequest;
@@ -22,16 +24,16 @@ import java.util.Date;
 import java.util.TimeZone;
 import java.util.TreeMap;
 
+
+@Setter
+@Getter
+@RequiredArgsConstructor
 public class FileUploadAPI {
 
     // Naver Object Storage에 파일 업로드용
 
     // 생성한 버킷 이름
-    private String bucketName = "Your bucket name";
-    // 업로드 할 파일 이름
-    private String objectName = "fileName.Extension";
-    // 파일의 절대 경로
-    private String sourceFilePath = "";
+    public final static String bucketName = "whiskey-file";
 
     private static final String CHARSET_NAME = "UTF-8";
     private static final String HMAC_ALGORITHM = "HmacSHA256";
@@ -52,9 +54,9 @@ public class FileUploadAPI {
     private static final String ENDPOINT = "https://kr.object.ncloudstorage.com";
 
     // API KEY ID
-    private static final String ACCESS_KEY = "Your API Access ID";
+    private static final String ACCESS_KEY = "";
     // API SECRET KEY
-    private static final String SECRET_KEY = "Your API Secret Key";
+    private static final String SECRET_KEY = "";
 
 
     private static byte[] sign(String stringData, byte[] key) throws NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeyException {
@@ -223,7 +225,7 @@ public class FileUploadAPI {
     }
 
     // file 업로드 하는 메서드
-    public static void putObject(String bucketName, String objectName, String localFilePath) throws Exception {
+    public void putObject(String bucketName, String objectName, String localFilePath) throws Exception {
         HttpClient httpClient = HttpClientBuilder.create().build();
 
         HttpPut request = new HttpPut(ENDPOINT + "/" + bucketName + "/" + objectName);
@@ -232,7 +234,7 @@ public class FileUploadAPI {
 
         authorization(request, REGION_NAME, ACCESS_KEY, SECRET_KEY);
 
-        HttpResponse response = httpClient.execute(request);
-        System.out.println("Response : " + response.getStatusLine());
+        httpClient.execute(request);
     }
+
 }

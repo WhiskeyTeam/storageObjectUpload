@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: storage
+logging:
+  level:
+    root: info
+    dev.doka.storage: debug
+springdoc:
+  packages-to-scan: dev.doka.storage.api
+  default-consumes-media-type: application/json;charset=utf-8
+  default-produces-media-type: application/json;charset=utf-8

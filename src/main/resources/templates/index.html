@@ -5,10 +5,32 @@
     <title>Index Page</title>
 </head>
 <body>
-    <form id="uploadForm">
-      <input type="file" id="file" name="file" required>
-        <button type="button" onclick="uploadFile()">Upload</button>
-    </form>
+<form id="uploadForm">
+    <input type="file" id="file" name="file" required>
+    <button type="button" onclick="uploadFile()">Upload</button>
+</form>
+<script>
+    function uploadFile() {
+        var fileInput = document.getElementById('file');
+        var file = fileInput.files[0];
 
+        if (file) {
+            var formData = new FormData();
+            formData.append('file', file);
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success', data);
+                })
+                .catch((error) => {
+                    console.error('Error', error);
+                });
+        }
+    }
+</script>
 </body>
 </html>
