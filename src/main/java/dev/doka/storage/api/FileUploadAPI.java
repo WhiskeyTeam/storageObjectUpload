@@ -231,6 +231,7 @@ public class FileUploadAPI {
 
         HttpPut request = new HttpPut(ENDPOINT + "/" + bucketName + "/" + objectName);
         request.addHeader("Host", request.getURI().getHost());
+        request.addHeader("x-amz-acl", "public-read");
         request.setEntity(new FileEntity(new File(localFilePath)));
 
         authorization(request, REGION_NAME, ACCESS_KEY, SECRET_KEY);
