@@ -55,9 +55,9 @@ public class FileUploadAPI {
     private static final String ENDPOINT = "https://kr.object.ncloudstorage.com";
 
     // API KEY ID
-    private static final String ACCESS_KEY = "ncp_iam_BPASKR2nrRmtPZJMFIBv";
+    private static final String ACCESS_KEY = "";
     // API SECRET KEY
-    private static final String SECRET_KEY = "ncp_iam_BPKSKR1fMhzw7tICTSptWcJuYymPCgZ3W9";
+    private static final String SECRET_KEY = "";
 
 
     private static byte[] sign(String stringData, byte[] key) throws NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeyException {
